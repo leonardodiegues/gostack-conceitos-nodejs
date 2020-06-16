@@ -114,7 +114,7 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryIndex, 1);
 
-  return response.status(204).send()
+  return response.status(204).send();
 });
 
 app.post("/repositories/:id/like", (request, response) => {
@@ -141,7 +141,7 @@ app.post("/repositories/:id/like", (request, response) => {
     return response.status(400).json({ error: 'Invalid repository ID' });
   }
 
-  repositories[repositoryIndex].likes++
+  repositories[repositoryIndex].likes++;
 
   return response.json(repositories[repositoryIndex]);
 });
