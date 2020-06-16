@@ -80,17 +80,19 @@ app.put("/repositories/:id", (request, response) => {
   const { id } = request.params;
   const { title, url, techs } = request.body;
 
-  const repository = { id, title, url, techs };
-
   const repositoryIndex = repositories.findIndex(repo => repo.id === id);
 
   if (repositoryIndex < 0) {
     return response.status(400).json({ error: 'Invalid repository ID.' });
   }
 
+  const { likes } = repositories[repositoryIndex];
+
+  const repository = { id, title, url, techs, likes };
+
   repositories[repositoryIndex] = repository;
 
-  return response.json(repository);
+  return response.json(repositories[repositoryIndex]);
 });
 
 app.delete("/repositories/:id", (request, response) => {
